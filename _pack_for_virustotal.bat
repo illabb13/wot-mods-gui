@@ -1,0 +1,1 @@
+upx -9 --output="ObservedMogGui.exe" WotModsGui.exe

@@ -1,0 +1,394 @@
+object FormMain: TFormMain
+  Left = 308
+  Height = 420
+  Top = 125
+  Width = 640
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Observed Mod Configurator (for version 1.0) - illabb13, 2014'
+  ClientHeight = 420
+  ClientWidth = 640
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.2.4.0'
+  object btnSave: TButton
+    Left = 471
+    Height = 28
+    Top = 384
+    Width = 160
+    Caption = 'Сохранить'
+    Font.Style = [fsBold]
+    OnClick = btnSaveClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object pcMain: TPageControl
+    Left = 12
+    Height = 368
+    Top = 8
+    Width = 619
+    ActivePage = tabMessage
+    TabIndex = 1
+    TabOrder = 1
+    object tabLimitations: TTabSheet
+      Caption = 'Ограничения'
+      ClientHeight = 340
+      ClientWidth = 611
+      object cboxDisabledByStartBattle: TCheckBox
+        Left = 16
+        Height = 19
+        Top = 16
+        Width = 174
+        Caption = 'Отключить при старте боя'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+      object cboxLimitationTypeOfBattles: TCheckBox
+        Left = 16
+        Height = 19
+        Top = 56
+        Width = 137
+        Caption = 'Ограничить тип боев'
+        OnChange = DisabledControls
+        TabOrder = 1
+      end
+      object lblLimitationTypeOfBattlesHelp: TLabel
+        Left = 48
+        Height = 30
+        Top = 74
+        Width = 456
+        Caption = 'Если опция включена, то мод будет работать ТОЛЬКО в следующих типах боев:'#13#10'Специальный бой, Тренировочный бой, Ротный бой, Командный бой'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblEnabledForVehType: TLabel
+        Left = 16
+        Height = 15
+        Top = 128
+        Width = 259
+        Caption = 'Включать мод только для следующей техники:'
+        ParentColor = False
+      end
+      object cboxEnabledForHT: TCheckBox
+        Left = 48
+        Height = 19
+        Top = 162
+        Width = 104
+        Caption = 'Тяжелые танки'
+        TabOrder = 2
+      end
+      object cboxEnabledForMT: TCheckBox
+        Left = 216
+        Height = 19
+        Top = 162
+        Width = 101
+        Caption = 'Средние танки'
+        TabOrder = 3
+      end
+      object cboxEnabledForLT: TCheckBox
+        Left = 384
+        Height = 19
+        Top = 162
+        Width = 92
+        Caption = 'Легкие танки'
+        TabOrder = 4
+      end
+      object cboxEnabledForATSPG: TCheckBox
+        Left = 48
+        Height = 19
+        Top = 186
+        Width = 64
+        Caption = 'ПТ-САУ'
+        TabOrder = 5
+      end
+      object cboxEnabledForSPG: TCheckBox
+        Left = 216
+        Height = 19
+        Top = 186
+        Width = 43
+        Caption = 'САУ'
+        TabOrder = 6
+      end
+      object lblEnabledForVehTypeHelp: TLabel
+        Left = 48
+        Height = 15
+        Top = 144
+        Width = 310
+        Caption = 'Выберите технику, для которой мод будет работать'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object tabMessage: TTabSheet
+      Caption = 'Сообщения'
+      ClientHeight = 340
+      ClientWidth = 611
+      object lblMessage: TLabel
+        Left = 16
+        Height = 15
+        Top = 20
+        Width = 69
+        Caption = 'Сообщение:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object editMessage: TEdit
+        Left = 92
+        Height = 23
+        Top = 16
+        Width = 486
+        ParentFont = False
+        TabOrder = 0
+      end
+      object lblEditMessageHelp: TLabel
+        Left = 48
+        Height = 45
+        Top = 42
+        Width = 372
+        Caption = 'Чтобы вовсе не отображать сообщение, оставить поле ПУСТЫМ'#13#10'Подстановки:'#13#10'        {cell} - квадрат засвета'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblShowWhenLess: TLabel
+        Left = 16
+        Height = 15
+        Top = 202
+        Width = 407
+        Caption = 'Показывать сообщение при числе живых союзников в количестве менее'
+        ParentColor = False
+        ParentFont = False
+      end
+      object spinShowWhenLessInRandom: TSpinEdit
+        Left = 435
+        Height = 23
+        Top = 200
+        Width = 42
+        MaxValue = 14
+        OnChange = DisabledControls
+        ParentFont = False
+        TabOrder = 1
+      end
+      object lblShowWhenLessHelp: TLabel
+        Left = 51
+        Height = 45
+        Top = 220
+        Width = 353
+        Caption = 'При значении "0" опции выключаются.'#13#10'Обратите внимание, что при включенной опции ограничения'#13#10'типов боев параметр для рандома работать не будет'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+        WordWrap = True
+      end
+      object cboxHelpMeOption: TCheckBox
+        Left = 16
+        Height = 19
+        Top = 288
+        Width = 252
+        Caption = 'Показывать сообщение "Нужна помощь"'
+        ParentFont = False
+        TabOrder = 2
+      end
+      object cboxCellClickOption: TCheckBox
+        Left = 16
+        Height = 19
+        Top = 312
+        Width = 210
+        Caption = 'Прокликивать по квадрату засвета'
+        ParentFont = False
+        TabOrder = 3
+      end
+      object lblShowWhenLessInRandomDesc: TLabel
+        Left = 483
+        Height = 15
+        Top = 202
+        Width = 57
+        Caption = 'в рандоме'
+        ParentColor = False
+      end
+      object spinShowWhenLess: TSpinEdit
+        Left = 435
+        Height = 23
+        Top = 228
+        Width = 42
+        MaxValue = 14
+        OnChange = DisabledControls
+        ParentFont = False
+        TabOrder = 4
+      end
+      object lblShowWhenLessDesc: TLabel
+        Left = 483
+        Height = 15
+        Top = 231
+        Width = 95
+        Caption = 'в остальных боях'
+        ParentColor = False
+      end
+      object cboxUseSquadChat: TCheckBox
+        Left = 16
+        Height = 19
+        Top = 104
+        Width = 157
+        Caption = 'Использовать чат взвода'
+        OnChange = DisabledControls
+        TabOrder = 5
+      end
+      object lblUseSquadChatHelp: TLabel
+        Left = 51
+        Height = 60
+        Top = 124
+        Width = 545
+        Caption = 'Данный параметр работает так: пока во взводе больше одного живого игрока, то в чат взвода'#13#10'отправляется сообщение о засвете, и нижестоящие параметры не работают. Как только во'#13#10'взводе остается один живой игрок, то нижестоящие параметры работают как обычно,'#13#10'а сообщение о засвете идет в тимчат.'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+        OnClick = lblUseSquadChatHelpClick
+      end
+    end
+    object tabEndMessage: TTabSheet
+      Caption = 'Сообщение об окончании засвета'
+      ClientHeight = 340
+      ClientWidth = 611
+      object lblEndMessage: TLabel
+        Left = 16
+        Height = 15
+        Top = 18
+        Width = 352
+        Caption = 'Показывать сообщение после срабатывания "лампочки" через'
+        ParentColor = False
+        ParentFont = False
+      end
+      object spinTimeEndMessage: TSpinEdit
+        Left = 376
+        Height = 23
+        Top = 15
+        Width = 50
+        MaxValue = 15
+        OnChange = DisabledControls
+        ParentFont = False
+        TabOrder = 0
+      end
+      object lblEndMessageSec: TLabel
+        Left = 432
+        Height = 15
+        Top = 18
+        Width = 21
+        Caption = 'сек.'
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblTimeEndMessageHelp: TLabel
+        Left = 48
+        Height = 15
+        Top = 34
+        Width = 253
+        Caption = 'При значении "0" данная опция выключается'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+        WordWrap = True
+      end
+      object editEndMessage: TEdit
+        Left = 93
+        Height = 23
+        Top = 72
+        Width = 483
+        ParentFont = False
+        TabOrder = 1
+      end
+      object lblEndMessageLabel: TLabel
+        Left = 16
+        Height = 15
+        Top = 75
+        Width = 69
+        Caption = 'Сообщение:'
+        ParentColor = False
+        ParentFont = False
+      end
+      object lblEndMessageHelp: TLabel
+        Left = 48
+        Height = 30
+        Top = 99
+        Width = 175
+        Caption = 'Подстановки:'#13#10'        {time} - параметр времени'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object tabHotKey: TTabSheet
+      Caption = 'Горячие клавиши'
+      ClientHeight = 340
+      ClientWidth = 611
+      object lblModKey: TLabel
+        Left = 16
+        Height = 15
+        Top = 20
+        Width = 78
+        Caption = 'Модификатор'
+        ParentColor = False
+        ParentFont = False
+      end
+      object combModKey: TComboBox
+        Left = 104
+        Height = 23
+        Top = 16
+        Width = 128
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          '(нет)'
+          'LCONTROL'
+          'LSHIFT'
+          'LALT'
+        )
+        OnChange = combModKeyChange
+        ParentFont = False
+        Style = csDropDownList
+        TabOrder = 0
+        Text = '(нет)'
+      end
+      object lblKey: TLabel
+        Left = 248
+        Height = 15
+        Top = 20
+        Width = 50
+        Caption = 'Клавиша'
+        ParentColor = False
+        ParentFont = False
+      end
+      object combKey: TComboBox
+        Left = 304
+        Height = 23
+        Top = 16
+        Width = 52
+        DropDownCount = 13
+        ItemHeight = 15
+        ParentFont = False
+        Style = csDropDownList
+        TabOrder = 1
+      end
+      object lblEnableHotKeyHelp: TLabel
+        Left = 56
+        Height = 90
+        Top = 42
+        Width = 532
+        Caption = 'Если выбрана клавиша-модификатор, то второй клавишей будут доступны буквенные (A-Z),'#13#10'иначе будут доступны только клавиши F9-F12.'#13#10'Клавиши-модификаторы:'#13#10'        LCONTROL - левый Ctrl'#13#10'        LSHIFT - левый Shift'#13#10'        LALT - левый Alt'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+  end
+end
