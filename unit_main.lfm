@@ -1,12 +1,12 @@
 object FormMain: TFormMain
-  Left = 308
-  Height = 420
-  Top = 125
+  Left = 529
+  Height = 538
+  Top = 137
   Width = 640
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'Observed Mod Configurator (for version 1.0) - illabb13, 2014'
-  ClientHeight = 420
+  Caption = 'Observed Mod Configurator (for version 1.2) - illabb13, 2014'
+  ClientHeight = 538
   ClientWidth = 640
   OnCreate = FormCreate
   Position = poScreenCenter
@@ -14,7 +14,7 @@ object FormMain: TFormMain
   object btnSave: TButton
     Left = 471
     Height = 28
-    Top = 384
+    Top = 488
     Width = 160
     Caption = 'Сохранить'
     Font.Style = [fsBold]
@@ -24,7 +24,7 @@ object FormMain: TFormMain
   end
   object pcMain: TPageControl
     Left = 12
-    Height = 368
+    Height = 472
     Top = 8
     Width = 619
     ActivePage = tabMessage
@@ -32,7 +32,7 @@ object FormMain: TFormMain
     TabOrder = 1
     object tabLimitations: TTabSheet
       Caption = 'Ограничения'
-      ClientHeight = 340
+      ClientHeight = 460
       ClientWidth = 611
       object cboxDisabledByStartBattle: TCheckBox
         Left = 16
@@ -126,7 +126,7 @@ object FormMain: TFormMain
     end
     object tabMessage: TTabSheet
       Caption = 'Сообщения'
-      ClientHeight = 340
+      ClientHeight = 444
       ClientWidth = 611
       object lblMessage: TLabel
         Left = 16
@@ -251,6 +251,41 @@ object FormMain: TFormMain
         ParentColor = False
         ParentFont = False
         OnClick = lblUseSquadChatHelpClick
+      end
+      object rbForceShowIfSPG1: TRadioButton
+        Left = 280
+        Height = 19
+        Top = 288
+        Width = 196
+        Caption = 'принудительно для артиллерии'
+        TabOrder = 6
+      end
+      object rbForceShowIfSPG2: TRadioButton
+        Left = 280
+        Height = 19
+        Top = 312
+        Width = 196
+        Caption = 'принудительно для артиллерии'
+        TabOrder = 7
+      end
+      object lblForceShowIfSPGHelp: TLabel
+        Left = 51
+        Height = 45
+        Top = 368
+        Width = 504
+        Caption = 'Если включена опция "принудительно для артиллерии", то сообщения о засвете будут'#13#10'показываться независимо от параметров прокликивания по карте и сообщения "Нужна'#13#10'помощь". Чтобы не использовать эту опцию, установить "игнорировать артиллерию :)"'
+        Font.Color = clHotLight
+        Font.Style = [fsItalic]
+        ParentColor = False
+        ParentFont = False
+      end
+      object rbForceShowIfSPG0: TRadioButton
+        Left = 280
+        Height = 19
+        Top = 336
+        Width = 179
+        Caption = 'игнорировать артиллерию :)'
+        TabOrder = 8
       end
     end
     object tabEndMessage: TTabSheet

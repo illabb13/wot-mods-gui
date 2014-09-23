@@ -34,6 +34,7 @@ type
         combModKey: TComboBox;
         editEndMessage: TEdit;
         editMessage: TEdit;
+        lblForceShowIfSPGHelp: TLabel;
         lblEnableHotKeyHelp: TLabel;
         lblUseSquadChatHelp: TLabel;
         lblEnabledForVehType: TLabel;
@@ -53,6 +54,9 @@ type
         lblShowWhenLessHelp: TLabel;
         lblTimeEndMessageHelp: TLabel;
         pcMain: TPageControl;
+        rbForceShowIfSPG0: TRadioButton;
+        rbForceShowIfSPG1: TRadioButton;
+        rbForceShowIfSPG2: TRadioButton;
         spinShowWhenLessInRandom: TSpinEdit;
         spinShowWhenLess: TSpinEdit;
         spinTimeEndMessage: TSpinEdit;
@@ -77,9 +81,11 @@ type
         procedure WriteValue(Node: TDOMNode; Value: Integer);
         procedure WriteValue(Node: TDOMNode; Value: String);
 
+        procedure Analyze_ForceShowIfSPG_Param(ParamValue: String);
         procedure Analyze_HotKey_Param(ParamValue: String);
         procedure Analyze_EnabledForVehType_Param(ParamValue: String);
 
+        function Get_ForceShowIfSPG_Param(): String;
         function Get_HotKey_Param(): String;
         function Get_EnabledForVehType_Param(): String;
 
@@ -162,6 +168,9 @@ begin
             cboxHelpMeOption.Checked := ReadBooleanValue(ParamValue);
         'cellClickOption':
             cboxCellClickOption.Checked := ReadBooleanValue(ParamValue);
+        'forceShowIfSPG': begin
+            Analyze_ForceShowIfSPG_Param(ParamValue);
+        end;
         'timeEndMessage': begin
             spinTimeEndMessage.Value := ReadIntegerValue(ParamValue);
             DisabledControls(spinTimeEndMessage);
@@ -198,6 +207,7 @@ begin
         WriteValue(FindNode('cellClickOption'), cboxCellClickOption.Checked);
         WriteValue(FindNode('timeEndMessage'), spinTimeEndMessage.Value);
         WriteValue(FindNode('endMessage'), editEndMessage.Text);
+        WriteValue(FindNode('forceShowIfSPG'), Get_ForceShowIfSPG_Param);
         WriteValue(FindNode('hotKey'), Get_HotKey_Param);
         WriteValue(FindNode('enabledForVehType'), Get_EnabledForVehType_Param)
     end;
@@ -303,6 +313,20 @@ begin
     Node.FirstChild.NodeValue := UTF8Decode(Value);
 end;
 
+procedure TFormMain.Analyze_ForceShowIfSPG_Param(ParamValue: String);
+var
+    Param: Integer;
+begin
+    Param := ReadIntegerValue(ParamValue);
+
+    if (Param = 0) then
+        rbForceShowIfSPG0.Checked := True
+    else if (Param = 1) then
+        rbForceShowIfSPG1.Checked := True
+    else if (Param = 2) then
+        rbForceShowIfSPG2.Checked := True;
+end;
+
 procedure TFormMain.Analyze_HotKey_Param(ParamValue: String);
 var
     HotkeyValue, ValueModKey, ValueKey: String;
@@ -365,6 +389,17 @@ begin
     finally
         Values.Free;
     end;
+end;
+
+function TFormMain.Get_ForceShowIfSPG_Param: String;
+begin
+  Result := '0';
+  if (rbForceShowIfSPG0.Checked = True) then
+      Result := '0'
+  else if (rbForceShowIfSPG1.Checked = True) then
+      Result := '1'
+  else if (rbForceShowIfSPG2.Checked = True) then
+      Result := '2';
 end;
 
 function TFormMain.Get_HotKey_Param: String;
